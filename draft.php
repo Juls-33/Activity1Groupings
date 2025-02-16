@@ -157,7 +157,6 @@
                 "\n\nAddress: " + formData.user_address
             );
         }
-        
         function isError(formData){
             var errorString = ""
             if (formData.user_fName.length>=50) {
@@ -175,6 +174,13 @@
             }else if(!formData.user_address){
                 errorString +="Address is empty\n";
             }
+            for (let char of formData.user_fName) {
+                if (char >= '0' && char <= '9') {
+                    errorString += "First name should not contain numbers.\n";
+                    break;
+                }
+            }
+            
             if(!isNaN(formData.user_fName)||!isNaN(formData.user_lName)){
                 errorString +="Must input characters only";
             }
