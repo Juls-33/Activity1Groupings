@@ -181,42 +181,42 @@
         function isError(formData){
             var errorString = ""
             if (formData.user_fName.length>=50) {
-                errorString +="First name is too long\n";
+                errorString +="--First name is too long--\n";
                 document.getElementById("fName").style.boxShadow= "red 0 0 0 2px"
             }else if (!formData.user_fName) {
-                errorString +="First name is empty\n";
+                errorString +="--First name is empty--\n";
                 document.getElementById("fName").style.boxShadow= "red 0 0 0 2px"
             }
             if(formData.user_lName.length>=50){
-                errorString +="Last name is too long\n";
+                errorString +="--Last name is too long--\n";
                 document.getElementById("lName").style.boxShadow= "red 0 0 0 2px"
             }else if(!formData.user_lName){
-                errorString +="Last name is empty\n";
+                errorString +="--Last name is empty--\n";
                 document.getElementById("lName").style.boxShadow= "red 0 0 0 2px"
             }
             if(formData.user_address.length>=100){
-                errorString +="Address is too long\n";
+                errorString +="--Address is too long--\n";
                 document.getElementById("userAddress").style.boxShadow= "red 0 0 0 2px"
             }else if(!formData.user_address){
-                errorString +="Address is empty\n";
+                errorString +="--Address is empty--\n";
                 document.getElementById("userAddress").style.boxShadow= "red 0 0 0 2px"
             }
             for (let char of formData.user_lName) {
                 if (char >= '0' && char <= '9') {
-                    errorString += "Last name should not contain numbers.\n";
+                    errorString += "--Last name should not contain numbers.--\n";
                     document.getElementById("lName").style.boxShadow= "red 0 0 0 2px"
                     break;
                 }
             }
             if (formData.user_gender==null) {
-                errorString +="You must select your gender\n";
+                errorString +="--You must select your gender--\n";
             }
             if(!formData.user_age){
-                errorString +="Age is empty\n";
+                errorString +="--Age is empty--\n";
                 document.getElementById("userAge").style.boxShadow= "inset red 0 0 0 2px"
             }
             if(formData.user_age>120){
-                errorString +="Age is too big\n";
+                errorString +="--Age is too big--\n";
                 document.getElementById("userAge").style.boxShadow= "inset red 0 0 0 2px"
             }
             return errorString;
