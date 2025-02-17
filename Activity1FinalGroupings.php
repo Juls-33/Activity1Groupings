@@ -115,7 +115,7 @@
                     width: 600,
                     padding: "3em",
                     color: "#716add",
-                    background: "url(pictures/swalbg6.jpg)",
+                    background: "#fff url()",
                     backdrop: `
                         rgba(0,0,123,0.4)
                         url("")
