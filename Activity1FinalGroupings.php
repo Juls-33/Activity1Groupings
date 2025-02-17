@@ -6,19 +6,19 @@
             $obj = json_decode($_POST["myJson"]);
             $user_lName_substr = strtolower(substr($obj ->user_lName,0,1));
 
-            if (($user_lName_substr>='a' && $user_lName_substr<='m')&&($obj ->user_gender==="male")){
+            if (($user_lName_substr>='a' && $user_lName_substr<='m')&&($obj ->user_gender==="Male")){
                 echo ("Registration Complete!\n");
                 echo("\nYou Belong in Class A");
             }
-            else if (($user_lName_substr>='n' && $user_lName_substr<='z')&&($obj ->user_gender=="female")){
+            else if (($user_lName_substr>='n' && $user_lName_substr<='z')&&($obj ->user_gender=="Female")){
                 echo ("Registration Complete!\n");
                 echo("\nYou Belong in Class B");
             }
-            else if (($user_lName_substr>='n' && $user_lName_substr<='z')&&($obj ->user_gender=="male")){
+            else if (($user_lName_substr>='n' && $user_lName_substr<='z')&&($obj ->user_gender=="Male")){
                 echo ("Registration Complete!\n");
                 echo("\nYou Belong in Class C");
             }
-            else if (($user_lName_substr>='a' && $user_lName_substr<='m')&&($obj ->user_gender=="female")){
+            else if (($user_lName_substr>='a' && $user_lName_substr<='m')&&($obj ->user_gender=="Female")){
                 echo ("Registration Complete!\n");
                 echo("\nYou Belong in Class D");
             }
@@ -64,10 +64,10 @@
            
                     <p id="sex">Please select your gender:</p>
                     <div class="radio-group">
-                        <input type="radio" id="male" name="gender" value="male">
+                        <input type="radio" id="male" name="gender" value="Male">
                         <label for="male">Male</label>
                    
-                        <input type="radio" id="female" name="gender" value="female">
+                        <input type="radio" id="female" name="gender" value="Female">
                         <label for="female">Female</label>
                     </div>
                     <br>
