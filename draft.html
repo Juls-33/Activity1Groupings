@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContactForm</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- JQUERY -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <!-- SWAL 2 -->
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <script src="sweetalert2.min.js">
+    </script>
+</head>
+<body>
+    <div class="background">
+        <div class="container">
+            <div class="design">
+            </div>
+            <div class="ContactForm">
+                <h1>Personal Information Description</h1>
+                <p  id="description">Welcome! Please provide your details below to help us better understand your needs. All fields are required.</p>
+                <form>
+                    <label for="fName">First Name:</label>
+                    <br>
+                    <input type="text" id="fName" name="fName" placeholder="Enter your First Name" required>
+                    <br>
+                    <label for="lName">Last Name:</label>
+                    <br>
+                    <input type="text" id="lName" name="lName" placeholder="Enter your Last Name" required>
+                    <br>
+           
+                    <p id="sex">Please select your gender:</p>
+                    <div class="radio-group">
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">Male</label>
+                   
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Female</label>
+                    </div>
+                    <br>
+           
+                    <label for="userAge">Age:</label>
+                    <br>
+                    <input type="number" id="userAge" name="userAge" placeholder="Enter your Age" required>
+                    <br>
+           
+                    <label for="userAddress">Address:</label>
+                    <br>
+                    <input type="text" id="userAddress" name="userAddress" placeholder="Enter your Address" required>
+                    <br>
+                    <br>
+                   
+                    <div class="submit-container">
+                        <button type="button" onclick="submitFormViaJSON()" id="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

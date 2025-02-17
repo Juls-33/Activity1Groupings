@@ -1,6 +1,8 @@
 <?php
     try{
         if($_SERVER["REQUEST_METHOD"]==="POST"){
+            // throw new Exception("Error Processing Request", 1);
+            
             $obj = json_decode($_POST["myJson"]);
             $user_lName_substr = strtolower(substr($obj ->user_lName,0,1));
 
@@ -148,7 +150,11 @@
                     },
                     error: function(response) {
                         // Handle any errors that occur during the request
-                        alert("error");
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: 'Something went wrong!',
+                        });
                     }
                 });
             }  
