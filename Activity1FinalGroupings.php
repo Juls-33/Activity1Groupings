@@ -82,9 +82,8 @@
                     <br>
            
                     <label for="userAddress">Address:</label>
-                    <p class="addressText">[House/Building Number] [Street Name], [Barangay Name], [City/Municipality] </p>
                     <br>
-                    <input class="inputDesign address" type="text" id="userAddress" name="userAddress" placeholder="" required>
+                    <input class="inputDesign address" type="text" id="userAddress" name="userAddress" placeholder="Example: 123, LeBron Street, Barangay James, Los Angeles City" required>
                     <br>
                     <br>
                    
@@ -97,12 +96,12 @@
     </div>
     <script>
         function submitFormViaJSON(){
-            Swal.fire({
-                title: 'Form Submitted!',
-                text: 'Your form was submitted successfully.',
-                icon: 'success',
-                confirmButtonText: 'OK'
-            });
+            // Swal.fire({
+            //     title: 'Form Submitted!',
+            //     text: 'Your form was submitted successfully.',
+            //     icon: 'success',
+            //     confirmButtonText: 'OK'
+            // });
             var gender = document.querySelector('input[name="gender"]:checked') ? document.querySelector('input[name="gender"]:checked').value : null;
             var formData = {
                 user_fName: document.getElementById("fName").value,
