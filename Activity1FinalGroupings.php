@@ -1,8 +1,7 @@
 <?php
     try{
         if($_SERVER["REQUEST_METHOD"]==="POST"){
-            // throw new Exception("Error Processing Request", 1);
-            
+            // throw new Exception("Error Processing Request", 1);  
             $obj = json_decode($_POST["myJson"]);
             $user_lName_substr = strtolower(substr($obj ->user_lName,0,1));
 
@@ -23,7 +22,6 @@
                 echo("\nYou Belong in Class D");
             }
             else{
-                // echo ("Registration Complete!\n");
                 echo("Failed to classify you in a class");
             }
             exit;
@@ -96,12 +94,7 @@
     </div>
     <script>
         function submitFormViaJSON(){
-            // Swal.fire({
-            //     title: 'Form Submitted!',
-            //     text: 'Your form was submitted successfully.',
-            //     icon: 'success',
-            //     confirmButtonText: 'OK'
-            // });
+            //format to JSON
             var gender = document.querySelector('input[name="gender"]:checked') ? document.querySelector('input[name="gender"]:checked').value : null;
             var formData = {
                 user_fName: document.getElementById("fName").value,
@@ -110,7 +103,7 @@
                 user_gender: gender,
                 user_age: document.getElementById("userAge").value,
             };
-
+            //check for errors
             var errorString = isError(formData);
             if(errorString!=""){
                 Swal.fire({
@@ -129,7 +122,7 @@
                     });
             }
             else{
-
+                //removing error design when it's correct
                 const input = document.getElementsByTagName("input");
                 for (let i = 0; i < input.length; i++) {
                     if(i==2 || i==3){
@@ -137,12 +130,14 @@
                     }
                     input[i].classList.remove("inputDesignError");
                 }
+                //sending to php and receiving response from server
                 var jsonString = JSON.stringify(formData);
                 $.ajax({
                     url: "", 
                     type: "POST",
                     data: {myJson : jsonString},
                     success: function(response) {
+                        //Cannot classify to a class
                         if (response==="Failed to classify you in a class"){
                             Swal.fire({
                             icon: "warning",
@@ -160,6 +155,7 @@
                             `
                             });
                         }
+                        //Successfully classified
                         else{
                             Swal.fire({
                             icon: "success",
@@ -192,6 +188,7 @@
             
    
         }
+        //formatting submitted data to form
         function message(formData){
             return (
                 "Name:<b> " + formData.user_fName + "</b><b> " + formData.user_lName + 
@@ -200,7 +197,7 @@
                 "</b>\n\nAddress: " + formData.user_address + "</b>"
             );
         }
-        
+        //check for error function
         function isError(formData){
             var errorString = ""
             if (formData.user_fName.length>=100) {
