@@ -22,6 +22,10 @@
                 echo ("Registration Complete!\n");
                 echo("\nYou Belong in Class D");
             }
+            else{
+                // echo ("Registration Complete!\n");
+                echo("Failed to classify you in a class");
+            }
             exit;
 
             
@@ -51,15 +55,15 @@
             <div class="design"></div>
             <div class="ContactForm">
                 <h1>Personal Information Description</h1>
-                <p  id="description">Welcome! Please provide your details below to help us better understand your needs. All fields are required.</p>
+                <p  id="description">Welcome! Please provide your details below to help us better understand your needs. <b>All fields are required.</b></p>
                 <form>
                     <label for="fName">First Name:</label>
                     <br>
-                    <input type="text" id="fName" name="fName" placeholder="Enter your First Name" required>
+                    <input class="inputDesign" type="text" id="fName" name="fName" placeholder="Example: John Doe" required>
                     <br>
                     <label for="lName">Last Name:</label>
                     <br>
-                    <input type="text" id="lName" name="lName" placeholder="Enter your Last Name" required>
+                    <input class="inputDesign" type="text" id="lName" name="lName" placeholder="Example: James" required>
                     <br>
            
                     <p id="sex">Please select your gender:</p>
@@ -74,12 +78,12 @@
            
                     <label for="userAge">Age:</label>
                     <br>
-                    <input type="number" id="userAge" name="userAge" placeholder="Enter your Age" required>
+                    <input class="inputDesign" type="number" id="userAge" name="userAge" placeholder="Example: 18" required>
                     <br>
            
                     <label for="userAddress">Address:</label>
                     <br>
-                    <input type="text" id="userAddress" name="userAddress" placeholder="Enter your Address" required>
+                    <input class="inputDesign address" type="text" id="userAddress" name="userAddress" placeholder="[House/Building Number] [Street Name], [Barangay Name], [City/Municipality] " required>
                     <br>
                     <br>
                    
@@ -131,7 +135,7 @@
                     if(i==2 || i==3){
                         continue;
                     }
-                    input[i].style.boxShadow= "inset green 0 0 0 2px";
+                    input[i].classList.remove("inputDesignError");
                 }
                 var jsonString = JSON.stringify(formData);
                 $.ajax({
@@ -139,22 +143,41 @@
                     type: "POST",
                     data: {myJson : jsonString},
                     success: function(response) {
-                        Swal.fire({
-                            icon: "success",
+                        if (response==="Failed to classify you in a class"){
+                            Swal.fire({
+                            icon: "warning",
                             title: response,
-                            // text: message(formData),
-                            html: '<pre>' + message(formData) + '</pre>',
+                            html: '<pre>' + "Your Last name starts with a non character\n\n" + message(formData) + '</pre>',
                             width: 600,
                             padding: "3em",
                             color: "#716add",
-                            background: "#fff url(/images/trees.png)",
+                            background: "#fff url()",
                             backdrop: `
                                 rgba(0,0,123,0.4)
-                                url("/images/nyan-cat.gif")
+                                url()
                                 left top
                                 no-repeat
                             `
                             });
+                        }
+                        else{
+                            Swal.fire({
+                            icon: "success",
+                            title: response,
+                            html: '<pre>' + message(formData) + '</pre>',
+                            width: 600,
+                            padding: "3em",
+                            color: "#716add",
+                            background: "#fff url()",
+                            backdrop: `
+                                rgba(0,0,123,0.4)
+                                url("pictures/yey.gif")
+                                center top
+                                no-repeat
+                            `
+                            });
+                        }
+                        
                     },
                     error: function(response) {
                         // Handle any errors that occur during the request
@@ -180,44 +203,37 @@
         
         function isError(formData){
             var errorString = ""
-            if (formData.user_fName.length>=50) {
+            if (formData.user_fName.length>=100) {
                 errorString +="--First name is too long--\n";
-                document.getElementById("fName").style.boxShadow= "red 0 0 0 2px"
+                document.getElementById("fName").classList.add("inputDesignError");
             }else if (!formData.user_fName) {
                 errorString +="--First name is empty--\n";
-                document.getElementById("fName").style.boxShadow= "red 0 0 0 2px"
+                document.getElementById("fName").classList.add("inputDesignError");
             }
-            if(formData.user_lName.length>=50){
+            if(formData.user_lName.length>=100){
                 errorString +="--Last name is too long--\n";
-                document.getElementById("lName").style.boxShadow= "red 0 0 0 2px"
+                document.getElementById("lName").classList.add("inputDesignError");
             }else if(!formData.user_lName){
                 errorString +="--Last name is empty--\n";
-                document.getElementById("lName").style.boxShadow= "red 0 0 0 2px"
-            }
-            if(formData.user_address.length>=100){
+                document.getElementById("lName").classList.add("inputDesignError");
+            }"inputDesignError"
+;            if(formData.user_address.length>=150){
                 errorString +="--Address is too long--\n";
-                document.getElementById("userAddress").style.boxShadow= "red 0 0 0 2px"
+                document.getElementById("userAddress").classList.add("inputDesignError");
             }else if(!formData.user_address){
                 errorString +="--Address is empty--\n";
-                document.getElementById("userAddress").style.boxShadow= "red 0 0 0 2px"
-            }
-            for (let char of formData.user_lName) {
-                if (char >= '0' && char <= '9') {
-                    errorString += "--Last name should not contain numbers.--\n";
-                    document.getElementById("lName").style.boxShadow= "red 0 0 0 2px"
-                    break;
-                }
+                document.getElementById("userAddress").classList.add("inputDesignError");
             }
             if (formData.user_gender==null) {
                 errorString +="--You must select your gender--\n";
             }
             if(!formData.user_age){
                 errorString +="--Age is empty--\n";
-                document.getElementById("userAge").style.boxShadow= "inset red 0 0 0 2px"
+                document.getElementById("userAge").classList.add("inputDesignError");
             }
-            if(formData.user_age>120){
+            if(formData.user_age>125){
                 errorString +="--Age is too big--\n";
-                document.getElementById("userAge").style.boxShadow= "inset red 0 0 0 2px"
+                document.getElementById("userAge").classList.add("inputDesignError");
             }
             return errorString;
         }
