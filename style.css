@@ -154,6 +154,10 @@ label{
     outline: 0;
     box-shadow: 0 0 0 0 #fff inset, #29108c 0 0 0 3px;
 }
+.addressText{
+    font-size: 0.8rem;
+    margin-bottom: -1.2rem
+}
 /* error */
 .inputDesignError {
     box-shadow: inset #890101 0 0 0 2px;

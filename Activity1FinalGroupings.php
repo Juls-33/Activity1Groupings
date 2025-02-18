@@ -82,8 +82,9 @@
                     <br>
            
                     <label for="userAddress">Address:</label>
+                    <p class="addressText">[House/Building Number] [Street Name], [Barangay Name], [City/Municipality] </p>
                     <br>
-                    <input class="inputDesign address" type="text" id="userAddress" name="userAddress" placeholder="[House/Building Number] [Street Name], [Barangay Name], [City/Municipality] " required>
+                    <input class="inputDesign address" type="text" id="userAddress" name="userAddress" placeholder="" required>
                     <br>
                     <br>
                    
@@ -228,9 +229,17 @@
                 errorString +="--You must select your gender--\n";
             }
             if(!formData.user_age){
-                errorString +="--Age is empty--\n";
+                errorString +="--Age is empty/invalid--\n";
+                document.getElementById("userAge").classList.add("inputDesignError");
+            }else if(formData.user_age % 1 != 0){
+                errorString +="--Age should not have a decimal--\n";
+                document.getElementById("userAge").classList.add("inputDesignError"); 
+            }
+            if(formData.user_age<0){
+                errorString +="--Age should not be negative--\n";
                 document.getElementById("userAge").classList.add("inputDesignError");
             }
+
             if(formData.user_age>125){
                 errorString +="--Age is too big--\n";
                 document.getElementById("userAge").classList.add("inputDesignError");
