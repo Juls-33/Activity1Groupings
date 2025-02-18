@@ -197,25 +197,8 @@
                 "</b>\n\nAddress: " + formData.user_address + "</b>"
             );
         }
-        function removeLeadingZeros(num)
-        {
-            var stringNum = num.toString();
-            console.log(stringNum);
-            for (var i = 0; i < num.length; i++) {
-                if (stringNum.charAt(i) === '0') {
-                    stringNum.replace("0", "");
-                }
-                else{
-                    break;
-                }
-            }
-        
-            // If the entire string is traversed
-            // that means it didn't have a single
-            // non-zero character, hence return "0"
-            return "0";
-        }
-                //check for error function
+
+        //check for error function
         function isError(formData){
             var errorString = ""
             if (formData.user_fName.length>=100) {
