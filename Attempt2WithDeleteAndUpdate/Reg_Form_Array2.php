@@ -16,62 +16,19 @@
             if (isset($action)) {
                 switch ($action) {
                     case 'deleteAll':
-                        unset( $_SESSION['arr']);
-                        echo "deleted";
+                        // delete all record (clue: use unset())
                         break;
                     case 'deleteOne':
-                        if(isset($_SESSION['arr'][$obj->user_ID])){
-                            unset( $_SESSION['arr'][$obj->user_ID]);
-                            echo "oneDelete";
-                        }else{
-                            echo "noID";
-                        }
+                        //delete one record (clue: use unset())
                         break;
                     case 'updateRecord':
-                        if(isset($_SESSION['arr'][$obj->user_ID])){
-                            unset( $_SESSION['arr'][$obj->user_ID]);
-                            $_SESSION['arr'][$obj->user_fName." ".$obj -> user_lName]= array(
-                                "First Name" => $obj->user_fName,
-                                "Last Name" => $obj -> user_lName, 
-                                "User Address" => $obj -> user_address,
-                                "Gender" => $obj -> user_gender,
-                                "User Age" => $obj -> user_age,
-                            );
-                        }
-                        else{
-                            echo "noID";
-                        }
+                        //Update a record
                         break;
                     case 'showRecords':
-                        $table = '<table style="width: 100%; border-collapse: collapse;">';
-                        $table .= '<tr style="background-color: #716add; color: white;">';
-                        $table .= '<th style="padding: 8px; border: 1px solid #716add;">ID</th>';
-                        $table .= '<th style="padding: 8px; border: 1px solid #716add;">First Name</th>';
-                        $table .= '<th style="padding: 8px; border: 1px solid #716add;">Last Name</th>';
-                        $table .= '<th style="padding: 8px; border: 1px solid #716add;">Gender</th>';
-                        $table .= '<th style="padding: 8px; border: 1px solid #716add;">User Age</th>';
-                        $table .= '<th style="padding: 8px; border: 1px solid #716add;">User Address</th>';
-                        $table .= '</tr>';
-                        foreach ($_SESSION['arr'] as $row) 
-                        { 
-                            $table .= '<tr style="background-color: #f9f9f9; text-align: center;">';
-                            $table .= '<td style="padding: 8px; border: 1px solid #716add;">' . $row['First Name']." ".$row['Last Name']  . '</td>';
-                            $table .= '<td style="padding: 8px; border: 1px solid #716add;">' . $row['First Name'] . '</td>';
-                            $table .= '<td style="padding: 8px; border: 1px solid #716add;">' . $row['Last Name'] . '</td>';
-                            $table .= '<td style="padding: 8px; border: 1px solid #716add;">' . $row['Gender'] . '</td>';
-                            $table .= '<td style="padding: 8px; border: 1px solid #716add;">' . $row['User Age'] . '</td>';
-                            $table .= '<td style="padding: 8px; border: 1px solid #716add;">' . $row['User Address'] . '</td>';
-                            $table .= '</tr>';
-                        }
-                        $table .= '</table>';
-                        echo $table;
+                        //add Show all records here (access the array)
                         break;
                     case 'addNewRecord':
-                        if(isset($_SESSION['arr'][$obj->user_fName." ".$obj -> user_lName])){
-                            echo "IDExist";
-                        }else{
-                            addNewRecord($obj);
-                        }
+                        //Add new record
                         break;
                 }
             }
