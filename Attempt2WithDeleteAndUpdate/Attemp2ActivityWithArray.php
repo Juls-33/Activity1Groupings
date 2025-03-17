@@ -31,8 +31,8 @@
         <div class="container">
             <div class="design"></div>
             <div class="ContactForm">
-                <!-- Content goes here -->
-                
+                <!--Dynamic content goes here -->
+                <!-- SPA -->
             </div>
         </div>
     </div>
@@ -257,10 +257,10 @@
         var gender = document.querySelector('input[name="gender"]:checked') ? document.querySelector('input[name="gender"]:checked').value : null;
         var formData = {
             action: document.getElementById("updateRecord").value,
-            user_ID: document.getElementById("idName").value,
-            user_fName: document.getElementById("fName").value,
-            user_lName: document.getElementById("lName").value,
-            user_address: document.getElementById("userAddress").value,
+            user_ID: document.getElementById("idName").value.trim(),
+            user_fName: document.getElementById("fName").value.trim(),
+            user_lName: document.getElementById("lName").value.trim(),
+            user_address: document.getElementById("userAddress").value.trim(),
             user_gender: gender,
             user_age: parseInt(document.getElementById("userAge").value,10),
         };
@@ -346,9 +346,9 @@
         var gender = document.querySelector('input[name="gender"]:checked') ? document.querySelector('input[name="gender"]:checked').value : null;
         var formData = {
             action: 'addNewRecord',
-            user_fName: document.getElementById("fName").value,
-            user_lName: document.getElementById("lName").value,
-            user_address: document.getElementById("userAddress").value,
+            user_fName: document.getElementById("fName").value.trim(),
+            user_lName: document.getElementById("lName").value.trim(),
+            user_address: document.getElementById("userAddress").value.trim(),
             user_gender: gender,
             user_age: parseInt(document.getElementById("userAge").value,10),
         };
