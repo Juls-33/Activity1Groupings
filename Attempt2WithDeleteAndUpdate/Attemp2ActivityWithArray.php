@@ -31,95 +31,32 @@
         <div class="container">
             <div class="design"></div>
             <div class="ContactForm">
-                <h1>Personal Information Description</h1>
-                <p  id="description">Welcome! Please provide your details below to help us better understand your needs. <b>All fields are required.</b></p>
-                <form>
-                    <div class="label-container">
-                        <label for="fName">First Name:</label>
-                        <p id="count-result-fName" class="counter">Character Count: 0/100</p>
-                    </div>
-                    
-                    <br>
-                    <input class="inputDesign formInput" type="text" id="fName" name="fName" placeholder="Example: John Doe" maxLength='100' required>
-                    
-                    <br>
-                    <div class="label-container">
-                    <label for="lName">Last Name:</label>
-                        <p id="count-result-lName" class="counter">Character Count: 0/100</p>
-                    </div>
-                    <br>
-                    <input class="inputDesign" type="text" id="lName" name="lName" placeholder="Example: James" maxLength='100' required>
-                    <br>
-           
-                    <p id="sex">Please select your gender:</p>
-                    <div class="radio-group">
-                        <input type="radio" id="male" name="gender" value="Male">
-                        <label for="male">Male</label>
-                   
-                        <input type="radio" id="female" name="gender" value="Female">
-                        <label for="female">Female</label>
-                    </div>
-                    <br>
-           
-                    <label for="userAge">Age:</label>
-                    <br>
-                    <input class="inputDesign" type="number" id="userAge" name="userAge" placeholder="Example: 18" onkeypress="return event.charCode>=48 && event.charCode<=57" required>
-                    <br>
-
-                    <div class="label-container">
-                        <label for="userAddress">Address:</label>
-                        <p id="count-result-uAdd" class="counter">Character Count: 0/150</p>
-                    </div>
-                    
-                    <br>
-                    <input class="inputDesign address" type="text" id="userAddress" name="userAddress" placeholder="Example: 123, LeBron Street, Barangay James, Los Angeles City" maxLength='150' required>
-                    <br>
-                    <br>
-                   
-                    <div class="submit-container">
-                        <button type="button"  id="submit" value="addNew" onclick="submitFormViaJSON()">Submit</button>
-                    </div>
-                    <div class="submit-container">
-                        <button type="button"  id="editRecord" value="editRecord" onclick="showEditPage()">Edit Record</button>
-                        
-                    </div>
-                     <!-- <div class="submit-container">
-                        <button type="button"  id="deleteAll" name="deleteAll" value="deleteAll">Delete All</button>
-                    </div>
-                    <div class="submit-container">
-                        <button type="button"  id="deleteOne" value="deleteOne">Delete a record</button>
-                    </div>
-                    <div class="submit-container">
-                        <button type="button"  id="updateRecord" value="updateRecord">Update Record</button>
-                    </div>
-                    <div class="submit-container">
-                        <button type="button"  id="showRecords" value="showRecords">Show Records</button> 
-                    </div> -->
-                </form>
+                <!-- Content goes here -->
                 
             </div>
         </div>
     </div>
     <script>
-    
+    showAddRecordPage();
+    //SPA DYNAMIC CONTENTS
     function showEditPage(){
         document.getElementsByClassName("ContactForm")[0].innerHTML =`
             <h1>Database Editor</h1>
                 <p  id="description">Click a button to delete all records, Delete a record, update a record, view all records, or add new record</p>
                 <div class="submit-container">
-                        <button type="button"  id="deleteAll" name="deleteAll" value="deleteAll" onclick="deleteAllRec()">Delete All</button>
-                    </div>
+                        <button type="button"  class="button" id="deleteAll" name="deleteAll" value="deleteAll" onclick="deleteAllRec()">Delete All</button>
+                    </div><br>
                     <div class="submit-container">
-                        <button type="button"  id="deleteOnePage" value="deleteOnePage" onclick="showDeleteOnePage()">Delete a record</button>
-                    </div>
+                        <button type="button"  class="button" id="deleteOnePage" value="deleteOnePage" onclick="showDeleteOnePage()">Delete a record</button>
+                    </div><br>
                     <div class="submit-container">
-                        <button type="button"  id="updateRecordPage" value="updateRecordPage" onclick="showUpdatePage()">Update a record</button>
-                    </div>
+                        <button type="button" class="button" id="updateRecordPage" value="updateRecordPage" onclick="showUpdatePage()">Update a record</button>
+                    </div><br>
                     <div class="submit-container">
-                        <button type="button"  id="showRecords" value="showRecords" onclick="showAllRec()">Show Records</button>
-                    </div>
+                        <button type="button" class="button" id="showRecords" value="showRecords" onclick="showAllRec()">Show All Records</button>
+                    </div><br>
                     <div class="submit-container">
-                        <button type="button"  id="AddNewRecordPage" value="AddNewRecordPage" onclick="showAddRecordPage()">Add New Record</button>
+                        <button type="button" class="button" id="AddNewRecordPage" value="AddNewRecordPage" onclick="showAddRecordPage()">Add New Record</button>
                     </div>`;
     }
     function showAddRecordPage(){
@@ -171,31 +108,13 @@
                    
                     <div class="submit-container">
                         <button type="button"  id="submit" value="addNew" onclick="submitFormViaJSON()">Submit</button>
-                    </div>
+                    </div><br>
                     <div class="submit-container">
-                        <button type="button"  id="editRecord" value="editRecord" onclick="showEditPage()">Edit Record</button>
-                        
+                        <button type="button" class="button" id="editRecord" value="editRecord" onclick="showEditPage()">Edit Record</button>
                     </div>
                 </form>`;
-
-                let input = document.querySelector('#fName');
-                let input1 = document.querySelector('#lName');
-                let input2 = document.querySelector('#userAddress');
+                addTextCounter();
                 
-                input.addEventListener('keyup', (e) => {
-                    counter = document.querySelector('#count-result-fName');
-                    maxLength = 100;
-                    counter.innerHTML = `Character Count: ${e.target.value.length}/${maxLength}`
-                })
-                input1.addEventListener('keyup', (e) => {
-                    counter = document.querySelector('#count-result-lName');
-                    maxLength = 100;
-                    counter.innerHTML = `Character Count: ${e.target.value.length}/${maxLength}`
-                })
-                input2.addEventListener('keyup', (e) => {
-                    counter = document.querySelector('#count-result-uAdd');
-                    counter.innerHTML = `Character Count: ${e.target.value.length}/${maxLength}`
-                })
     }
     function showDeleteOnePage(){
         document.getElementsByClassName("ContactForm")[0].innerHTML =`
@@ -204,18 +123,19 @@
         <form>
             <div class="label-container">
                 <label for="deleteOneInp">Delete a Record:</label>
-                <br>
-                <input class="inputDesign formInput" type="text" id="deleteOneInp" name="deleteOneInp" placeholder="Example: John Doe" maxLength='100' required>
-                <div class="submit-container">
-                    <button type="button"  id="deleteOne" value="deleteOne" onclick="deleteOneRec()">Delete a record</button>
-                </div>
-                <div class="submit-container">
-                    <button type="button"  id="showRecords" value="showRecords" onclick="showAllRec()">Show All Records</button> 
-                </div>
-                <div class="submit-container">
-                    <button type="button"  id="editRecord" value="editRecord" onclick="showEditPage()">Back</button>
-                </div>
             </div>
+            <br>
+            <input class="inputDesign formInput" type="text" id="deleteOneInp" name="deleteOneInp" placeholder="Example: John Doe" maxLength='100' required>
+            <div class="submit-container">
+                <button type="button"  class="button" id="deleteOne" value="deleteOne" onclick="deleteOneRec()">Delete a record</button>
+            </div><br>
+            <div class="submit-container">
+                <button type="button"  class="button" id="showRecords" value="showRecords" onclick="showAllRec()">Show All Records</button> 
+            </div><br>
+            <div class="submit-container">
+                <button type="button"  class="button" id="editRecord" value="editRecord" onclick="showEditPage()">Back</button>
+            </div>
+            
         </form>
         `
         
@@ -275,47 +195,62 @@
                     <br>
                    
                     <div class="submit-container">
-                        <button type="button"  id="updateRecord" value="updateRecord" onclick="updateOneRec()">Submit</button>
-                    </div>
+                        <button type="button"  class="button" id="updateRecord" value="updateRecord" onclick="updateOneRec()">Submit</button>
+                    </div><br>
                     <div class="submit-container">
-                        <button type="button"  id="showRecords" value="showRecords" onclick="showAllRec()">Show All Records</button> 
-                    </div>
+                        <button type="button"  class="button" id="showRecords" value="showRecords" onclick="showAllRec()">Show All Records</button> 
+                    </div><br>
                     <div class="submit-container">
-                        <button type="button"  id="editRecord" value="editRecord" onclick="showEditPage()">Back</button>
+                        <button type="button"  class="button" id="editRecord" value="editRecord" onclick="showEditPage()">Back</button>
                     </div>
                 </form>
-        `
-        let input = document.querySelector('#fName');
-        let input1 = document.querySelector('#lName');
-        let input2 = document.querySelector('#userAddress');
-        
-        input.addEventListener('keyup', (e) => {
-            counter = document.querySelector('#count-result-fName');
-            maxLength = 100;
-            counter.innerHTML = `Character Count: ${e.target.value.length}/${maxLength}`
-        })
-        input1.addEventListener('keyup', (e) => {
-            counter = document.querySelector('#count-result-lName');
-            maxLength = 100;
-            counter.innerHTML = `Character Count: ${e.target.value.length}/${maxLength}`
-        })
-        input2.addEventListener('keyup', (e) => {
-            counter = document.querySelector('#count-result-uAdd');
-            counter.innerHTML = `Character Count: ${e.target.value.length}/${maxLength}`
-        })
+        `;
+        addTextCounter();
     }
-
-
+    //END OF SPA FUNCTIONS
+    //text counter
+    function addTextCounter(){
+        let input = document.querySelector('#fName');
+                let input1 = document.querySelector('#lName');
+                let input2 = document.querySelector('#userAddress');
+                
+                input.addEventListener('keyup', (e) => {
+                    counter = document.querySelector('#count-result-fName');
+                    maxLength = 100;
+                    counter.innerHTML = `Character Count: ${e.target.value.length}/${maxLength}`
+                })
+                input1.addEventListener('keyup', (e) => {
+                    counter = document.querySelector('#count-result-lName');
+                    maxLength = 100;
+                    counter.innerHTML = `Character Count: ${e.target.value.length}/${maxLength}`
+                })
+                input2.addEventListener('keyup', (e) => {
+                    counter = document.querySelector('#count-result-uAdd');
+                    counter.innerHTML = `Character Count: ${e.target.value.length}/${maxLength}`
+                })
+    }
 
     // CLICK BUTTON VALUES
     var btnClickValue;
     function deleteAllRec(){
-        var formData = {
-            action:document.getElementById("deleteAll").value,
-            // user_ID: document.getElementById("fName").value,
-        };
-        var jsonString = JSON.stringify(formData);
-        sendViaAjax(jsonString);
+        Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+        if (result.isConfirmed) {
+            var formData = {
+                action:document.getElementById("deleteAll").value,
+            };
+            var jsonString = JSON.stringify(formData);
+            sendViaAjax(jsonString);
+        }
+        });
+        
     }
 
     function updateOneRec(){
@@ -332,12 +267,24 @@
         errorCheckAndSubmit(formData)
     }
     function deleteOneRec(){
-        var formData = {
-            action: document.getElementById("deleteOne").value,
-            user_ID: document.getElementById("deleteOneInp").value,
-        };
-        var jsonString = JSON.stringify(formData);
-        sendViaAjax(jsonString);
+        Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+        if (result.isConfirmed) {
+            var formData = {
+                action: document.getElementById("deleteOne").value,
+                user_ID: document.getElementById("deleteOneInp").value,
+            };
+            var jsonString = JSON.stringify(formData);
+            sendViaAjax(jsonString);
+        }
+        });
     }
     function showAllRec(){
         var formData = {
@@ -347,17 +294,50 @@
         var jsonString = JSON.stringify(formData);
         sendViaAjax(jsonString);
     }
-    
-    
-    
 
+    //alert only
     function sendViaAjax(jsonString){
         $.ajax({
             type: "POST",
             url: "Reg_Form_Array2.php",
             data: {myJson: jsonString}
         }).done(function( msg ) {
-            alert( "Data Saved: " + msg );
+            if(msg=="deleted"){
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "All records have been deleted.",
+                    icon: "success"
+                });
+            }else if(msg=="oneDelete"){
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "A record has been deleted",
+                    icon: "success"
+                });
+            }else if(msg=="noID"){
+                Swal.fire({
+                    title: "ID Does not exist",
+                    text: "The ID you entered does not exist.",
+                    icon: "warning"
+                });
+            }
+            else{
+                Swal.fire({
+                        // icon: "warning",
+                        title: "All records",
+                        html:  msg,
+                        width: 600,
+                        padding: "3em",
+                        color: "#716add",
+                        background: "#fff url()",
+                        backdrop: `
+                            rgba(0,0,123,0.4)
+                            url()
+                            left top
+                            no-repeat
+                        `
+                        });
+            }
         });
     }
       
@@ -426,6 +406,20 @@
                             left top
                             no-repeat
                         `
+                        });
+                    }//ID does not exist (update record)
+                    else if(response=="noID"){
+                        Swal.fire({
+                            title: "ID Does not exist",
+                            text: "The ID you entered does not exist.",
+                            icon: "warning"
+                        });
+                    }//ID exist (new record)
+                    else if(response=="IDExist"){
+                        Swal.fire({
+                            title: "ID already exist",
+                            text: "The first name and last name combination you entered already exist.",
+                            icon: "warning"
                         });
                     }
                     //Successfully classified
@@ -498,25 +492,6 @@
         }
         return errorString;
     }
-    //text counter
-    let input = document.querySelector('#fName');
-    let input1 = document.querySelector('#lName');
-    let input2 = document.querySelector('#userAddress');
-    const fNameCount = input.addEventListener('keyup', (e) => {
-        counter = document.querySelector('#count-result-fName');
-        maxLength = 100;
-        counter.innerHTML = `Character Count: ${e.target.value.length}/${maxLength}`
-    })
-    
-    input1.addEventListener('keyup', (e) => {
-        counter = document.querySelector('#count-result-lName');
-        maxLength = 100;
-        counter.innerHTML = `Character Count: ${e.target.value.length}/${maxLength}`
-    })
-    input2.addEventListener('keyup', (e) => {
-        counter = document.querySelector('#count-result-uAdd');
-        counter.innerHTML = `Character Count: ${e.target.value.length}/${maxLength}`
-    })
     </script>
 </body>
 </html>

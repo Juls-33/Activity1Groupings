@@ -9,23 +9,6 @@
         session_destroy();
         session_start(); 
     }
-
-
-    /*
-    if (isset($_POST['action'])) {
-        switch ($_POST['action']) {
-            case 'deleteAll':
-                deleteAll();
-                break;
-            case 'select':
-                select();
-                break;
-        }
-    }
-    function deleteAll(){
-        echo "hi";
-    }
-        */
     try{
         if($_SERVER["REQUEST_METHOD"]==="POST"){
             $obj = json_decode($_POST["myJson"]);
@@ -34,14 +17,14 @@
                 switch ($action) {
                     case 'deleteAll':
                         unset( $_SESSION['arr']);
-                        echo "all records deleted";
+                        echo "deleted";
                         break;
                     case 'deleteOne':
                         if(isset($_SESSION['arr'][$obj->user_ID])){
                             unset( $_SESSION['arr'][$obj->user_ID]);
-                            echo "ID: $obj->user_ID was successfully removed.";
+                            echo "oneDelete";
                         }else{
-                            echo "ID: $obj->user_ID does not exist";
+                            echo "noID";
                         }
                         break;
                     case 'updateRecord':
@@ -56,16 +39,36 @@
                             );
                         }
                         else{
-                            echo "ID: $obj->user_ID does not exist";
+                            echo "noID";
                         }
                         break;
                     case 'showRecords':
-                        // $arr[] = $_POST['action'];
-                        var_dump($arr);
+                        $table = '<table style="width: 100%; border-collapse: collapse;">';
+                        $table .= '<tr style="background-color: #716add; color: white;">';
+                        $table .= '<th style="padding: 8px; border: 1px solid #716add;">ID</th>';
+                        $table .= '<th style="padding: 8px; border: 1px solid #716add;">First Name</th>';
+                        $table .= '<th style="padding: 8px; border: 1px solid #716add;">Last Name</th>';
+                        $table .= '<th style="padding: 8px; border: 1px solid #716add;">Gender</th>';
+                        $table .= '<th style="padding: 8px; border: 1px solid #716add;">User Age</th>';
+                        $table .= '<th style="padding: 8px; border: 1px solid #716add;">User Address</th>';
+                        $table .= '</tr>';
+                        foreach ($_SESSION['arr'] as $row) 
+                        { 
+                            $table .= '<tr style="background-color: #f9f9f9; text-align: center;">';
+                            $table .= '<td style="padding: 8px; border: 1px solid #716add;">' . $row['First Name']." ".$row['Last Name']  . '</td>';
+                            $table .= '<td style="padding: 8px; border: 1px solid #716add;">' . $row['First Name'] . '</td>';
+                            $table .= '<td style="padding: 8px; border: 1px solid #716add;">' . $row['Last Name'] . '</td>';
+                            $table .= '<td style="padding: 8px; border: 1px solid #716add;">' . $row['Gender'] . '</td>';
+                            $table .= '<td style="padding: 8px; border: 1px solid #716add;">' . $row['User Age'] . '</td>';
+                            $table .= '<td style="padding: 8px; border: 1px solid #716add;">' . $row['User Address'] . '</td>';
+                            $table .= '</tr>';
+                        }
+                        $table .= '</table>';
+                        echo $table;
                         break;
                     case 'addNewRecord':
                         if(isset($_SESSION['arr'][$obj->user_fName." ".$obj -> user_lName])){
-                            echo "ID: ". $obj->user_fName." ".$obj ->user_lName." already exist";
+                            echo "IDExist";
                         }else{
                             addNewRecord($obj);
                         }
@@ -85,16 +88,6 @@
                 "Gender" => $obj -> user_gender,
                 "User Age" => $obj -> user_age,
             );
-            var_dump( $_SESSION['arr']);
-            /*
-            for ($row = 0; $row < count($_SESSION['arr']); $row++) {
-                echo "<p><b> Row ".$row,"</b></p>";
-                echo "<ul>";
-                foreach ($_SESSION['arr'][$row] as $x => $y) {
-                    echo "<li>".$x.": ".$y."</li>";
-                }
-                echo "</ul>";
-            }*/
             determineClass($user_lName_substr, $obj);
     }
     function determineClass($user_lName_substr, $obj){
@@ -117,39 +110,5 @@
         else{
             echo("Failed to classify you in a class");
         }
-    }
-        /*
-        if($_SERVER["REQUEST_METHOD"]==="POST"){
-            // throw new Exception("Error Processing Request", 1);  
-            $obj = json_decode($_POST["myJson"]);
-            $user_lName_substr = strtolower(substr($obj ->user_lName,0,1));
-
-            $arr[] = array("First Name" => $obj->user_fName,
-                "Last Name" => $obj -> user_lName, 
-                "User Address" => $obj -> user_address,
-                "Gender" => $obj -> user_gender,
-                "User Age" => $obj -> user_age,
-            );
-            for ($row = 0; $row < count($arr); $row++) {
-                echo "<p><b> Row ".$row+1,"</b></p>";
-                echo "<ul>";
-                foreach ($arr[$row] as $x => $y) {
-                    echo "<li>".$x.": ".$y."</li>";
-                }
-                
-                echo "</ul>";
-                }
-                determineClass($user_lName_substr, $obj);
-
-            
-            exit;
-
-            
-        }
-    }
-    catch(Exception $e){
-        http_response_code(404);
-    }
-    */
-    
+    }    
 ?>
